@@ -27,4 +27,11 @@
      (let[movies (same-movies x y)]
          (stats/pearson-coeffcient (get-scores x movies) (get-scores y movies))))
 
+   (defn compare-person
+     "compares a person with the other critics and returns the scores for the comparison strategy"
+     [f person]
+     (into {}
+       (for [ critic (keys data) :when (not= critic person) ] 
+         {critic (f person critic)} )))
+
 
